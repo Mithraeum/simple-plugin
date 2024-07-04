@@ -2011,6 +2011,14 @@
     semver "^7.5.4"
     uuid "^9.0.1"
 
+"@mithraeum/map-generator@^0.0.4":
+  version "0.0.4"
+  resolved "https://npm.pkg.github.com/download/@mithraeum/map-generator/0.0.4/88ddb9d9cf0ae580d13b52bb6b285e3f6d0fe90f#88ddb9d9cf0ae580d13b52bb6b285e3f6d0fe90f"
+  integrity sha512-GFyxrth19Pk/UWv0G8sV9WyCEmVU1ZAE317DhC3CxeLfE/b+gle8Vzw8Qq9CK5aIUZn5i9E3vRhBhApJuqb+0A==
+  dependencies:
+    lodash "^4.17.21"
+    web-worker "^1.2.0"
+
 "@mithraeum/mithraeum-sdk@^0.0.10-alpha.261":
   version "0.0.10-alpha.261"
   resolved "https://npm.pkg.github.com/download/@mithraeum/mithraeum-sdk/0.0.10-alpha.261/79478b2abe7634f439137312be35d7890db83e26#79478b2abe7634f439137312be35d7890db83e26"
@@ -2364,6 +2372,19 @@
     react-remove-scroll "2.5.7"
     ua-parser-js "^1.0.37"
 
+"@react-rxjs/core@^0.10.7":
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/@react-rxjs/core/-/core-0.10.7.tgz#09951f43a6c80892526ac13d51859098b0e74993"
+  integrity sha512-dornp8pUs9OcdqFKKRh9+I2FVe21gWufNun6RYU1ddts7kUy9i4Thvl0iqcPFbGY61cJQMAJF7dxixWMSD/A/A==
+  dependencies:
+    "@rx-state/core" "0.1.4"
+    use-sync-external-store "^1.0.0"
+
+"@react-rxjs/utils@^0.9.7":
+  version "0.9.7"
+  resolved "https://registry.yarnpkg.com/@react-rxjs/utils/-/utils-0.9.7.tgz#0b6c94bcb43d0f1d508f2b275282fd0a64fb32e1"
+  integrity sha512-m9CUTdRsglObvUAlYfB24QvN+QH4XqCGEKnCdSILIeOx7mMqSi9TTFp2zrj5XqtMiLnj4ReAdDxrXegLPB73bQ==
+
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.3.1.tgz#04bc0608f4aa4b2e4b1aebf284344d0f68fda283"
@@ -2405,6 +2426,11 @@
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.10.3.tgz#391d528054f758f81e53210f1a1eebcf1a8b1d20"
   integrity sha512-qC/xYId4NMebE6w/V33Fh9gWxLgURiNYgVNObbJl2LZv0GUUItCcCqC5axQSwRaAgaxl2mELq1rMzlswaQ0Zxg==
+
+"@rx-state/core@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@rx-state/core/-/core-0.1.4.tgz#586dde80be9dbdac31844006a0dcaa2bc7f35a5c"
+  integrity sha512-Z+3hjU2xh1HisLxt+W5hlYX/eGSDaXXP+ns82gq/PLZpkXLu0uwcNUh9RLY3Clq4zT+hSsA3vcpIGt6+UAb8rQ==
 
 "@safe-global/safe-apps-provider@0.18.1":
   version "0.18.1"
@@ -11843,6 +11869,11 @@ use-sync-external-store@1.2.0:
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
+use-sync-external-store@^1.0.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.2.tgz#c3b6390f3a30eba13200d2302dcdf1e7b57b2ef9"
+  integrity sha512-PElTlVMwpblvbNqQ82d2n6RjStvdSoNe9FG28kNfz3WiXilJm4DdNkEzRhCZuIDwY8U08WVihhGR5iRqAwfDiw==
+
 utf-8-validate@^5.0.2:
   version "5.0.10"
   resolved "https://registry.yarnpkg.com/utf-8-validate/-/utf-8-validate-5.0.10.tgz#d7d10ea39318171ca982718b6b96a8d2442571a2"
@@ -11995,6 +12026,11 @@ web-vitals@^2.1.0:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-2.1.4.tgz#76563175a475a5e835264d373704f9dde718290c"
   integrity sha512-sVWcwhU5mX6crfI5Vd2dC4qchyTqxV8URinzt25XqVh+bHEPGH4C3NPrNionCP7Obx59wrYEbNlw4Z8sjALzZg==
+
+web-worker@^1.2.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/web-worker/-/web-worker-1.3.0.tgz#e5f2df5c7fe356755a5fb8f8410d4312627e6776"
+  integrity sha512-BSR9wyRsy/KOValMgd5kMyr3JzpdeoR9KVId8u5GVlTTAtNChlsE4yTxeY7zMdNSyOmoKBv8NH2qeRY9Tg+IaA==
 
 "webextension-polyfill@>=0.10.0 <1.0":
   version "0.12.0"
@@ -12609,5 +12645,12 @@ zustand@4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.4.1.tgz#0cd3a3e4756f21811bd956418fdc686877e8b3b0"
   integrity sha512-QCPfstAS4EBiTQzlaGP1gmorkh/UL1Leaj2tdj+zZCZ/9bm0WS7sI2wnfD5lpOszFqWJ1DcPnGoY8RDL61uokw==
+  dependencies:
+    use-sync-external-store "1.2.0"
+
+zustand@^4.5.4:
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.5.4.tgz#63abdd81edfb190bc61e0bbae045cc4d52158a05"
+  integrity sha512-/BPMyLKJPtFEvVL0E9E9BTUM63MNyhPGlvxk1XjrfWTUlV+BR8jufjsovHzrtR6YNcBEcL7cMHovL1n9xHawEg==
   dependencies:
     use-sync-external-store "1.2.0"

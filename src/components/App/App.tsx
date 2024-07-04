@@ -1,25 +1,33 @@
-import React from "react";
-import logo from "../../logo.svg";
+import React, { FC, HTMLAttributes } from "react";
+import { makeStyles } from "tss-react/mui";
+import WorldAddressInput from "../WorldAddressInput/WorldAddressInput";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import SearchAddressInput from "../SearchAddressInput/SearchAddressInput";
+import SettlementsList from "../SettlementsList/SettlementsList";
 
-function App() {
+const useStyles = makeStyles({ name: "App" })((theme) => ({
+  root: {
+    margin: theme.spacing(1),
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+  },
+}));
+
+type Props = {} & HTMLAttributes<HTMLDivElement>;
+
+const App: FC<Props> = () => {
+  const { classes, cx } = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.root}>
+      <ConnectButton />
+      <WorldAddressInput />
+      <SearchAddressInput />
+      <SettlementsList />
     </div>
   );
-}
+};
 
 export default App;

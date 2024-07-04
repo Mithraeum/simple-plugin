@@ -18,7 +18,11 @@ export const getOverridesComponent = (baseTheme: Theme): Components => {
           display: flex;
           overflow-x: hidden;
         }
-      
+        #root {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
       `,
     },
   };
