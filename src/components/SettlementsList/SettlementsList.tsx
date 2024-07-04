@@ -13,7 +13,7 @@ import {
 const SettlementsList: FC = () => {
   const settlementEntities = useSettlementStore((state) => state.settlements);
 
-  return (
+  return settlementEntities.length ? (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: "100%" }} aria-label="simple table">
         <TableHead>
@@ -38,6 +38,8 @@ const SettlementsList: FC = () => {
         </TableBody>
       </Table>
     </TableContainer>
+  ) : (
+    <></>
   );
 };
 
