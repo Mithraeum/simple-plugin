@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes, useEffect, useState } from "react";
 import { useMithraeumSdk } from "../../hooks/useMithraeumSdk";
-import { Box, Stack, Switch, TextField, Typography } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import {
   GameEntities,
   MithraeumSdk,
@@ -10,11 +10,6 @@ import { ethers } from "ethers";
 import { combineLatest, map, of, switchMap } from "rxjs";
 import { useStore } from "../../store/store";
 import { bind } from "@react-rxjs/core";
-
-enum AddressType {
-  SETTLEMENT,
-  WALLET,
-}
 
 const [useSettlements, settlements$] = bind(
   (sdk: MithraeumSdk, address: string) => {
@@ -63,29 +58,14 @@ type Props = {} & HTMLAttributes<HTMLDivElement>;
 
 const SearchAddressInput: FC<Props> = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [addressType, setAddressType] = useState<AddressType>(
-    AddressType.SETTLEMENT,
-  );
   const sdk = useMithraeumSdk();
   const settlements = useSettlements(sdk, searchValue);
 
   const setSettlements = useStore((state) => state.setSettlements);
 
   useEffect(() => {
-    console.log("settlements", settlements);
-
     setSettlements(settlements);
   }, [settlements]);
-
-  const changeAddressType = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAddressType((value) => {
-      if (value === AddressType.WALLET) {
-        return AddressType.SETTLEMENT;
-      } else {
-        return AddressType.WALLET;
-      }
-    });
-  };
 
   return (
     <Box component="form" noValidate autoComplete="off">
@@ -97,16 +77,6 @@ const SearchAddressInput: FC<Props> = () => {
           setSearchValue(event.target.value);
         }}
       />
-
-      <Stack direction="row" spacing={1} alignItems="center">
-        <Typography>Settlement</Typography>
-        <Switch
-          checked={addressType === AddressType.WALLET}
-          onChange={changeAddressType}
-          inputProps={{ "aria-label": "controlled" }}
-        />
-        <Typography>Wallet</Typography>
-      </Stack>
     </Box>
   );
 };
