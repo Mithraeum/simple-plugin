@@ -4,6 +4,8 @@ import WorldAddressInput from "../WorldAddressInput/WorldAddressInput";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import SearchAddressInput from "../SearchAddressInput/SearchAddressInput";
 import SettlementsList from "../SettlementsList/SettlementsList";
+import { Subscribe } from "@react-rxjs/core";
+import Loader from "../Loader/Loader";
 
 const useStyles = makeStyles({ name: "App" })((theme) => ({
   root: {
@@ -22,10 +24,12 @@ const App: FC<Props> = () => {
 
   return (
     <div className={classes.root}>
-      <ConnectButton />
-      <WorldAddressInput />
-      <SearchAddressInput />
-      <SettlementsList />
+      <Subscribe fallback={<Loader />}>
+        <ConnectButton />
+        <WorldAddressInput />
+        <SearchAddressInput />
+        <SettlementsList />
+      </Subscribe>
     </div>
   );
 };

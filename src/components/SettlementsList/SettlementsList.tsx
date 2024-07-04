@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import { useSettlementStore } from "../../store/store";
+import { useStore } from "../../store/store";
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -9,9 +10,18 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { useMithraeumSdk } from "../../hooks/useMithraeumSdk";
+import { useEthersSigner } from "../../hooks/useEthersSigner";
 
 const SettlementsList: FC = () => {
-  const settlementEntities = useSettlementStore((state) => state.settlements);
+  const sdk = useMithraeumSdk();
+  const settlementEntities = useStore((state) => state.settlements);
+  const setActiveSettlement = useStore((state) => state.setActiveSettlement);
+  const signer = useEthersSigner();
+
+  const onHarvestAll = (settlementAddress: string) => {
+    sdk.services.settlement.harvestAll(settlementAddress, signer!);
+  };
 
   return settlementEntities.length ? (
     <TableContainer component={Paper}>
@@ -19,6 +29,7 @@ const SettlementsList: FC = () => {
         <TableHead>
           <TableRow>
             <TableCell>Settlement Address</TableCell>
+            <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -30,8 +41,20 @@ const SettlementsList: FC = () => {
                 "&:last-child td, &:last-child th": { border: 0 },
               }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell
+                component="th"
+                scope="row"
+                onClick={() => setActiveSettlement(settlement)}
+              >
                 {settlement.address}
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <Button
+                  variant={"contained"}
+                  onClick={() => onHarvestAll(settlement.address)}
+                >
+                  Harvest All
+                </Button>
               </TableCell>
             </TableRow>
           ))}

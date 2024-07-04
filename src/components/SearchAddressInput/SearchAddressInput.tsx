@@ -1,24 +1,63 @@
 import React, { FC, HTMLAttributes, useEffect, useState } from "react";
-import { makeStyles } from "tss-react/mui";
 import { useMithraeumSdk } from "../../hooks/useMithraeumSdk";
 import { Box, Stack, Switch, TextField, Typography } from "@mui/material";
 import {
   GameEntities,
+  MithraeumSdk,
   SettlementEntity,
-  UserEntity,
 } from "@mithraeum/mithraeum-sdk";
 import { ethers } from "ethers";
-import { combineLatest, filter, map, switchMap } from "rxjs";
-import { useSettlementStore } from "../../store/store";
+import { combineLatest, map, of, switchMap } from "rxjs";
+import { useStore } from "../../store/store";
+import { bind } from "@react-rxjs/core";
 
 enum AddressType {
   SETTLEMENT,
   WALLET,
 }
 
-const useStyles = makeStyles({ name: "SearchAddressInput" })((theme) => ({
-  root: {},
-}));
+const [useSettlements, settlements$] = bind(
+  (sdk: MithraeumSdk, address: string) => {
+    if (!ethers.isAddress(address)) {
+      return of([]);
+    }
+
+    const isSettlement$ = sdk
+      .getGameEntity(GameEntities.WorldAsset, address)
+      .assetType$()
+      .pipe(
+        map((assetType) => {
+          return assetType === "BASIC";
+        }),
+      );
+
+    return isSettlement$.pipe(
+      switchMap((isSettlement) => {
+        if (isSettlement) {
+          return of([
+            sdk.getGameEntity(
+              GameEntities.Settlement,
+              address,
+            ) as SettlementEntity,
+          ]);
+        } else {
+          const user = sdk.getGameEntity(GameEntities.User, address);
+
+          return user.banners$().pipe(
+            switchMap((banners) =>
+              combineLatest(banners.map((banner) => banner.settlement$())),
+            ),
+            map((settlements) => {
+              return settlements.filter(
+                (settlement) => !!settlement,
+              ) as SettlementEntity[];
+            }),
+          );
+        }
+      }),
+    );
+  },
+);
 
 type Props = {} & HTMLAttributes<HTMLDivElement>;
 
@@ -28,49 +67,15 @@ const SearchAddressInput: FC<Props> = () => {
     AddressType.SETTLEMENT,
   );
   const sdk = useMithraeumSdk();
-  const setSettlements = useSettlementStore((state) => state.setSettlements);
+  const settlements = useSettlements(sdk, searchValue);
+
+  const setSettlements = useStore((state) => state.setSettlements);
 
   useEffect(() => {
-    if (!ethers.isAddress(searchValue)) {
-      return;
-    }
-
-    const entity =
-      addressType === AddressType.SETTLEMENT
-        ? sdk.getGameEntity(GameEntities.Settlement, searchValue)
-        : sdk.getGameEntity(GameEntities.User, searchValue);
-
-    let settlements: SettlementEntity[] = [];
-
-    if (entity instanceof SettlementEntity) {
-      const settlementEntity = entity as SettlementEntity;
-
-      // settlements = [settlementEntity];
-      setSettlements([settlementEntity]);
-
-      // const resourceProductionBuildings$ =
-      //   sdk.services.settlement.resourceProductionBuildings$(
-      //     settlementEntity.address,
-      //   );
-    } else if (entity instanceof UserEntity) {
-      const userEntity = entity as UserEntity;
-
-      const settlements$ = userEntity.banners$().pipe(
-        switchMap((banners) =>
-          combineLatest(banners.map((banner) => banner.settlement$())),
-        ),
-        map((settlements) => {
-          return settlements.filter(
-            (settlement) => !!settlement,
-          ) as SettlementEntity[];
-        }),
-      );
-    } else {
-      throw new Error("Wrong address");
-    }
-
     console.log("settlements", settlements);
-  }, [sdk, searchValue, addressType]);
+
+    setSettlements(settlements);
+  }, [settlements]);
 
   const changeAddressType = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAddressType((value) => {
