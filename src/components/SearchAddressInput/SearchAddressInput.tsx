@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useMithraeumSdk } from "../../hooks/useMithraeumSdk";
 import { Box, TextField } from "@mui/material";
 import {
@@ -74,9 +74,7 @@ const [useSettlements, settlements$] = bind(
   [],
 );
 
-type Props = {} & HTMLAttributes<HTMLDivElement>;
-
-const SearchAddressInput: FC<Props> = () => {
+const SearchAddressInput: FC = () => {
   const queryParameters = new URLSearchParams(window.location.search);
   const addressFromQuery = queryParameters.get("userAddress");
 
@@ -92,9 +90,13 @@ const SearchAddressInput: FC<Props> = () => {
   }, [settlements]);
 
   return (
-    <Box component="form" noValidate autoComplete="off">
+    <Box
+      sx={{
+        width: "100%",
+      }}
+    >
       <TextField
-        sx={{ m: 1, width: "50%" }}
+        sx={{ m: 1, width: "100%" }}
         label="Settlement address or Wallet address"
         value={searchValue}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

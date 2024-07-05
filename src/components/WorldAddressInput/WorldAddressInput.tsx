@@ -17,9 +17,13 @@ const WorldAddressInput = () => {
   }, [addressFromQuery]);
 
   return (
-    <Box component="form" noValidate autoComplete="off">
+    <Box
+      sx={{
+        width: "100%",
+      }}
+    >
       <TextField
-        sx={{ m: 1, width: "50%" }}
+        sx={{ m: 1, width: "100%" }}
         label="World Address"
         value={worldAddress}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {

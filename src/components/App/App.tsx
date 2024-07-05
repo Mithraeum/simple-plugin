@@ -6,13 +6,15 @@ import SearchAddressInput from "../SearchAddressInput/SearchAddressInput";
 import SettlementsList from "../SettlementsList/SettlementsList";
 import { Subscribe } from "@react-rxjs/core";
 import Loader from "../Loader/Loader";
+import { Box } from "@mui/material";
 
 const useStyles = makeStyles({ name: "App" })((theme) => ({
   root: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(10, 1, 0),
     width: "100%",
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
     gap: 10,
   },
 }));
@@ -26,11 +28,21 @@ const App: FC<Props> = () => {
     <div className={classes.root}>
       <ConnectButton />
 
-      <Subscribe fallback={<Loader />}>
-        <WorldAddressInput />
-        <SearchAddressInput />
-        <SettlementsList />
-      </Subscribe>
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: 1200,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "stretch",
+        }}
+      >
+        <Subscribe fallback={<Loader />}>
+          <WorldAddressInput />
+          <SearchAddressInput />
+          <SettlementsList />
+        </Subscribe>
+      </Box>
     </div>
   );
 };
