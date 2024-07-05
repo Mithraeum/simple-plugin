@@ -25,8 +25,9 @@ const App: FC<Props> = () => {
 
   return (
     <div className={classes.root}>
+      <ConnectButton />
+
       <Subscribe fallback={<Loader />}>
-        <ConnectButton />
         <WorldAddressInput />
         <SearchAddressInput />
         <SettlementsList />

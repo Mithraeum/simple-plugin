@@ -11,7 +11,6 @@ import {
   BehaviorSubject,
   combineLatest,
   map,
-  Observable,
   of,
   Subject,
   switchMap,
@@ -57,13 +56,19 @@ const [useSettlements, settlements$] = bind(
           const user = sdk.getGameEntity(GameEntities.User, address);
 
           return user.banners$().pipe(
-            switchMap((banners) =>
-              combineLatest(banners.map((banner) => banner.settlement$())),
-            ),
+            switchMap((banners) => {
+              return combineLatest(
+                banners.map((banner) => banner.settlement$()),
+              );
+            }),
             map((settlements) => {
-              return settlements.filter(
+              const result = settlements.filter(
                 (settlement) => !!settlement,
               ) as SettlementEntity[];
+
+              console.log("result", result);
+
+              return result;
             }),
           );
         }
@@ -75,13 +80,24 @@ const [useSettlements, settlements$] = bind(
 type Props = {} & HTMLAttributes<HTMLDivElement>;
 
 const SearchAddressInput: FC<Props> = () => {
-  const [searchValue, setSearchValue] = useState("");
+  const queryParameters = new URLSearchParams(window.location.search);
+  const addressFromQuery = queryParameters.get("user-address");
+
+  console.log("addressFromQuery", addressFromQuery);
+
+  const [searchValue, setSearchValue] = useState(addressFromQuery || "");
+
+  console.log("searchValue", searchValue);
+
   const sdk = useMithraeumSdk();
   const settlements = useSettlements(sdk, searchValue);
+
+  console.log("settlements1", settlements);
 
   const setSettlements = useStore((state) => state.setSettlements);
 
   useEffect(() => {
+    console.log("settlements2", settlements);
     setSettlements(settlements);
   }, [settlements]);
 
