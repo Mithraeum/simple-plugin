@@ -28,7 +28,7 @@ const SettlementsList: FC = () => {
       <Table sx={{ minWidth: "100%" }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Settlement Address</TableCell>
+            <TableCell>Select Settlement Address</TableCell>
             <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
