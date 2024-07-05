@@ -8,6 +8,7 @@
     "@mithraeum/map-generator": "^0.0.4",
     "@mithraeum/mithraeum-assets": "^0.1.5",
     "@mithraeum/mithraeum-sdk": "^0.0.10-alpha.261",
+    "@mui/icons-material": "^5.15.21",
     "@mui/material": "^5.15.21",
     "@rainbow-me/rainbowkit": "^2.1.3",
     "@react-rxjs/core": "^0.10.7",

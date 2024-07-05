@@ -6,7 +6,6 @@ import SearchAddressInput from "../SearchAddressInput/SearchAddressInput";
 import SettlementsList from "../SettlementsList/SettlementsList";
 import { Subscribe } from "@react-rxjs/core";
 import Loader from "../Loader/Loader";
-import BuildingsList from "../BuildingsList/BuildingsList";
 
 const useStyles = makeStyles({ name: "App" })((theme) => ({
   root: {
@@ -31,7 +30,6 @@ const App: FC<Props> = () => {
         <WorldAddressInput />
         <SearchAddressInput />
         <SettlementsList />
-        <BuildingsList />
       </Subscribe>
     </div>
   );

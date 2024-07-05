@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, HTMLAttributes } from "react";
 import {
   Button,
   Paper,
@@ -9,7 +9,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useStore } from "../../store/store";
 import { bind } from "@react-rxjs/core";
 import {
   GameEntities,
@@ -20,13 +19,10 @@ import { combineLatest, map, of, switchMap } from "rxjs";
 import { useMithraeumSdk } from "../../hooks/useMithraeumSdk";
 import { useEthersSigner } from "../../hooks/useEthersSigner";
 import { bigintToNumber } from "../helpers/bigintToNumber";
+import Loader from "../Loader/Loader";
 
 const [useBuildings, buildings$] = bind(
-  (sdk: MithraeumSdk, settlement: SettlementEntity | null) => {
-    if (!settlement) {
-      return of([]);
-    }
-
+  (sdk: MithraeumSdk, settlement: SettlementEntity) => {
     const buildings$ = of(settlement).pipe(
       switchMap((settlement) => {
         return sdk.services.settlement.resourceProductionBuildings$(
@@ -104,12 +100,17 @@ const [useBuildings, buildings$] = bind(
       ),
     );
   },
+  [],
 );
 
-const BuildingsList: FC = () => {
+type Props = {
+  settlement: SettlementEntity;
+} & HTMLAttributes<HTMLDivElement>;
+
+const BuildingsList: FC<Props> = ({ settlement }) => {
   const sdk = useMithraeumSdk();
-  const activeSettlement = useStore((state) => state.activeSettlement);
-  const buildings = useBuildings(sdk, activeSettlement);
+  const buildings = useBuildings(sdk, settlement);
+
   const signer = useEthersSigner();
 
   const onHarvest = (buildingAddress: string) => {
@@ -121,7 +122,7 @@ const BuildingsList: FC = () => {
     buildingEntity.distribute(signer!);
   };
 
-  return activeSettlement ? (
+  return buildings.length ? (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: "100%" }} aria-label="simple table">
         <TableHead>
@@ -174,7 +175,7 @@ const BuildingsList: FC = () => {
       </Table>
     </TableContainer>
   ) : (
-    <></>
+    <Loader />
   );
 };
 
