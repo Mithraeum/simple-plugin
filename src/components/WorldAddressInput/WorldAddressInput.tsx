@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Box, TextField } from "@mui/material";
-import { GameEntities } from "@mithraeum/mithraeum-sdk";
-import { useMithraeumSdk } from "../../hooks/useMithraeumSdk";
+import { useStore } from "../../store/store";
 
 const WorldAddressInput = () => {
-  const [worldAddress, setWorldAddress] = useState("");
-  const sdk = useMithraeumSdk();
+  const queryParameters = new URLSearchParams(window.location.search);
+  const addressFromQuery = queryParameters.get("worldAddress");
+
+  const worldAddress = useStore((state) => state.worldAddress);
+  const setWorldAddress = useStore((state) => state.setWorldAddress);
 
   useEffect(() => {
-    if (!sdk) {
+    if (!addressFromQuery) {
       return;
     }
-
-    const sdkWorldAddress = sdk?.getGameEntity(GameEntities.World).address;
-
-    setWorldAddress(sdkWorldAddress);
-  }, [sdk]);
+    setWorldAddress(addressFromQuery);
+  }, [addressFromQuery]);
 
   return (
     <Box component="form" noValidate autoComplete="off">

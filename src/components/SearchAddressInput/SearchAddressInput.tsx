@@ -62,42 +62,32 @@ const [useSettlements, settlements$] = bind(
               );
             }),
             map((settlements) => {
-              const result = settlements.filter(
+              return settlements.filter(
                 (settlement) => !!settlement,
               ) as SettlementEntity[];
-
-              console.log("result", result);
-
-              return result;
             }),
           );
         }
       }),
     );
   },
+  [],
 );
 
 type Props = {} & HTMLAttributes<HTMLDivElement>;
 
 const SearchAddressInput: FC<Props> = () => {
   const queryParameters = new URLSearchParams(window.location.search);
-  const addressFromQuery = queryParameters.get("user-address");
-
-  console.log("addressFromQuery", addressFromQuery);
+  const addressFromQuery = queryParameters.get("userAddress");
 
   const [searchValue, setSearchValue] = useState(addressFromQuery || "");
-
-  console.log("searchValue", searchValue);
 
   const sdk = useMithraeumSdk();
   const settlements = useSettlements(sdk, searchValue);
 
-  console.log("settlements1", settlements);
-
   const setSettlements = useStore((state) => state.setSettlements);
 
   useEffect(() => {
-    console.log("settlements2", settlements);
     setSettlements(settlements);
   }, [settlements]);
 

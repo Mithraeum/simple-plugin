@@ -14,7 +14,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { environment, useMithraeumSdk } from "../../hooks/useMithraeumSdk";
+import { useMithraeumSdk } from "../../hooks/useMithraeumSdk";
 import { useEthersSigner } from "../../hooks/useEthersSigner";
 import { bind, Subscribe } from "@react-rxjs/core";
 import { MithraeumSdk, SettlementEntity } from "@mithraeum/mithraeum-sdk";
@@ -24,6 +24,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import BuildingsList from "../BuildingsList/BuildingsList";
 import Loader from "../Loader/Loader";
+import { environment } from "../../environment/environment";
 
 const [useBannerNames, settlements$] = bind(
   (sdk: MithraeumSdk, settlements: SettlementEntity[]) => {
@@ -81,7 +82,7 @@ const SettlementsList: FC = () => {
   return settlementEntities.length ? (
     <>
       <Typography variant={"subtitle1"}>
-        Select settlement address for the info:
+        Select settlement for the info:
       </Typography>
 
       <TableContainer component={Paper}>
