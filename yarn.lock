@@ -2019,6 +2019,11 @@
     lodash "^4.17.21"
     web-worker "^1.2.0"
 
+"@mithraeum/mithraeum-assets@^0.1.5":
+  version "0.1.5"
+  resolved "https://npm.pkg.github.com/download/@mithraeum/mithraeum-assets/0.1.5/b1c7360431027e52c76587e60306c209b2e75e81#b1c7360431027e52c76587e60306c209b2e75e81"
+  integrity sha512-8gnVy1kxet9kPLMqFwLWVoeVVUTmp/ToZDrWFfU142p/AvsrxZb+b4h0HyQhXdpeLMKiU7UPZEcys6s1h+XG1Q==
+
 "@mithraeum/mithraeum-sdk@^0.0.10-alpha.261":
   version "0.0.10-alpha.261"
   resolved "https://npm.pkg.github.com/download/@mithraeum/mithraeum-sdk/0.0.10-alpha.261/79478b2abe7634f439137312be35d7890db83e26#79478b2abe7634f439137312be35d7890db83e26"

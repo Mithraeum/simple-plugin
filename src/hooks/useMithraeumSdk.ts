@@ -3,7 +3,7 @@ import { useEthersProvider } from "./useEthersProvider";
 import { MithraeumSdk } from "@mithraeum/mithraeum-sdk";
 import { useMemo } from "react";
 
-const environment = {
+export const environment = {
   paymasterApiUrl: "https://paymaster-api.mithraeum.io",
   coreGraphApiUrl:
     "https://api.studio.thegraph.com/query/72578/mithraeum-gnosis-dev/version/latest",
@@ -15,6 +15,7 @@ const environment = {
   disableEventsListeners: false,
   logsPollingInterval: 30000,
   worldAddress: "0x5fb9731537D68eAB2901d4ebEE34Fc06e14B0051",
+  nftPartsContractAddress: "0x5C493B4035ad1886892d0fDdD6E5e532716a0Aa8",
 };
 
 const createSdk = (

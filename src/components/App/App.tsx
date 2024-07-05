@@ -21,7 +21,7 @@ const useStyles = makeStyles({ name: "App" })((theme) => ({
 type Props = {} & HTMLAttributes<HTMLDivElement>;
 
 const App: FC<Props> = () => {
-  const { classes, cx } = useStyles();
+  const { classes } = useStyles();
 
   return (
     <div className={classes.root}>

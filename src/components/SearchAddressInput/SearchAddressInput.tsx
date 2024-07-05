@@ -7,7 +7,15 @@ import {
   SettlementEntity,
 } from "@mithraeum/mithraeum-sdk";
 import { ethers } from "ethers";
-import { combineLatest, map, of, switchMap } from "rxjs";
+import {
+  BehaviorSubject,
+  combineLatest,
+  map,
+  Observable,
+  of,
+  Subject,
+  switchMap,
+} from "rxjs";
 import { useStore } from "../../store/store";
 import { bind } from "@react-rxjs/core";
 
@@ -17,14 +25,24 @@ const [useSettlements, settlements$] = bind(
       return of([]);
     }
 
-    const isSettlement$ = sdk
-      .getGameEntity(GameEntities.WorldAsset, address)
-      .assetType$()
-      .pipe(
-        map((assetType) => {
-          return assetType === "BASIC";
+    const isSettlement$: Subject<boolean> = new BehaviorSubject(false);
+
+    try {
+      isSettlement$.pipe(
+        map((isSettlement) => {
+          return sdk
+            .getGameEntity(GameEntities.WorldAsset, address)
+            .assetType$()
+            .pipe(
+              map((assetType) => {
+                return assetType === "BASIC";
+              }),
+            );
         }),
       );
+    } catch (e: any) {
+      console.error(e);
+    }
 
     return isSettlement$.pipe(
       switchMap((isSettlement) => {

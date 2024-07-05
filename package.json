@@ -6,6 +6,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mithraeum/map-generator": "^0.0.4",
+    "@mithraeum/mithraeum-assets": "^0.1.5",
     "@mithraeum/mithraeum-sdk": "^0.0.10-alpha.261",
     "@mui/material": "^5.15.21",
     "@rainbow-me/rainbowkit": "^2.1.3",
