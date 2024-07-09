@@ -153,7 +153,7 @@ const BuildingsList: FC<Props> = ({ settlement }) => {
                 </TableCell>
                 <TableCell component="th" scope="row">
                   <>
-                    {bigintToNumber(buildingTreasury)}/
+                    {bigintToNumber(buildingTreasury).toFixed(2)}/
                     {bigintToNumber(buildingMaxTreasury)}
                   </>
                 </TableCell>

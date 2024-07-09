@@ -2,17 +2,20 @@ import React, { FC, useEffect, useState } from "react";
 import { useMithraeumSdk } from "../../hooks/useMithraeumSdk";
 import { Box, TextField } from "@mui/material";
 import {
+  convertIdToType,
   GameEntities,
   MithraeumSdk,
   SettlementEntity,
+  WorldAsset__factory,
 } from "@mithraeum/mithraeum-sdk";
 import { ethers } from "ethers";
 import {
-  BehaviorSubject,
+  catchError,
   combineLatest,
+  from,
   map,
+  Observable,
   of,
-  Subject,
   switchMap,
 } from "rxjs";
 import { useStore } from "../../store/store";
@@ -24,24 +27,22 @@ const [useSettlements, settlements$] = bind(
       return of([]);
     }
 
-    const isSettlement$: Subject<boolean> = new BehaviorSubject(false);
-
-    try {
-      isSettlement$.pipe(
-        map((isSettlement) => {
-          return sdk
-            .getGameEntity(GameEntities.WorldAsset, address)
-            .assetType$()
-            .pipe(
-              map((assetType) => {
-                return assetType === "BASIC";
-              }),
-            );
-        }),
-      );
-    } catch (e: any) {
-      console.error(e);
-    }
+    const isSettlement$: Observable<boolean> = from(
+      WorldAsset__factory.connect(address, sdk.provider).assetTypeId(),
+    ).pipe(
+      catchError((e) => {
+        return of(null);
+      }),
+      map((assetTypeId) => {
+        if (!assetTypeId) {
+          return null;
+        }
+        return convertIdToType(assetTypeId);
+      }),
+      map((assetType) => {
+        return assetType === "BASIC";
+      }),
+    );
 
     return isSettlement$.pipe(
       switchMap((isSettlement) => {

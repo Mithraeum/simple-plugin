@@ -21,7 +21,6 @@ const createSdk = (
     indexerUrl: environment.coreGraphApiUrl,
     disableEventsListening: environment.disableEventsListeners,
     logsPollingInterval: environment.logsPollingInterval,
-    paymasterApiUrl: environment.paymasterApiUrl,
   });
 };
 
