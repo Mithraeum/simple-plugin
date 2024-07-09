@@ -7,7 +7,7 @@ import {
   MithraeumSdk,
   SettlementEntity,
   WorldAsset__factory,
-} from "@mithraeum/mithraeum-sdk";
+} from "@unknown222/mithraeum-sdk";
 import { ethers } from "ethers";
 import {
   catchError,

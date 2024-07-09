@@ -1,6 +1,6 @@
 import { FallbackProvider, JsonRpcProvider } from "ethers";
 import { useEthersProvider } from "./useEthersProvider";
-import { MithraeumSdk } from "@mithraeum/mithraeum-sdk";
+import { MithraeumSdk } from "@unknown222/mithraeum-sdk";
 import { useMemo } from "react";
 import { useStore } from "../store/store";
 import { environment } from "../environment/environment";

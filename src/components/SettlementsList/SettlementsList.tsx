@@ -17,9 +17,8 @@ import {
 import { useMithraeumSdk } from "../../hooks/useMithraeumSdk";
 import { useEthersSigner } from "../../hooks/useEthersSigner";
 import { bind, Subscribe } from "@react-rxjs/core";
-import { MithraeumSdk, SettlementEntity } from "@mithraeum/mithraeum-sdk";
+import { MithraeumSdk, SettlementEntity } from "@unknown222/mithraeum-sdk";
 import { combineLatest, map, of, switchMap } from "rxjs";
-import { MithraeumAssets } from "@mithraeum/mithraeum-assets";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import BuildingsList from "../BuildingsList/BuildingsList";
@@ -32,21 +31,10 @@ const [useBannerNames, settlements$] = bind(
       return of([]);
     }
 
-    const mithraeumAssets = new MithraeumAssets(
-      environment.nftPartsContractAddress,
-    );
-
     const bannerNames = settlements.map((settlement) => {
       return sdk.services.settlement.banner$(settlement.address).pipe(
         switchMap((banner) => {
-          return banner.data$().pipe(
-            map((data) => {
-              const options = mithraeumAssets.generateBannerOptions(
-                data as any,
-              );
-              return options.name;
-            }),
-          );
+          return banner.name$();
         }),
       );
     });

@@ -2011,27 +2011,6 @@
     semver "^7.5.4"
     uuid "^9.0.1"
 
-"@mithraeum/map-generator@^0.0.4":
-  version "0.0.4"
-  resolved "https://npm.pkg.github.com/download/@mithraeum/map-generator/0.0.4/88ddb9d9cf0ae580d13b52bb6b285e3f6d0fe90f#88ddb9d9cf0ae580d13b52bb6b285e3f6d0fe90f"
-  integrity sha512-GFyxrth19Pk/UWv0G8sV9WyCEmVU1ZAE317DhC3CxeLfE/b+gle8Vzw8Qq9CK5aIUZn5i9E3vRhBhApJuqb+0A==
-  dependencies:
-    lodash "^4.17.21"
-    web-worker "^1.2.0"
-
-"@mithraeum/mithraeum-assets@^0.1.5":
-  version "0.1.5"
-  resolved "https://npm.pkg.github.com/download/@mithraeum/mithraeum-assets/0.1.5/b1c7360431027e52c76587e60306c209b2e75e81#b1c7360431027e52c76587e60306c209b2e75e81"
-  integrity sha512-8gnVy1kxet9kPLMqFwLWVoeVVUTmp/ToZDrWFfU142p/AvsrxZb+b4h0HyQhXdpeLMKiU7UPZEcys6s1h+XG1Q==
-
-"@mithraeum/mithraeum-sdk@^0.0.10-alpha.261":
-  version "0.0.10-alpha.261"
-  resolved "https://npm.pkg.github.com/download/@mithraeum/mithraeum-sdk/0.0.10-alpha.261/79478b2abe7634f439137312be35d7890db83e26#79478b2abe7634f439137312be35d7890db83e26"
-  integrity sha512-7ggFyakCxRIAGQSOfApkgao3fCcToq3miG/CsL0ViCE7qt7FtiAcJqIl1arrr7QehekdAUt2G/O9Q+iXRel6ig==
-  dependencies:
-    lodash "^4.17.21"
-    rxjs "^7.8.1"
-
 "@motionone/animation@^10.15.1", "@motionone/animation@^10.18.0":
   version "10.18.0"
   resolved "https://registry.yarnpkg.com/@motionone/animation/-/animation-10.18.0.tgz#868d00b447191816d5d5cf24b1cafa144017922b"
@@ -3321,6 +3300,22 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
+
+"@unknown222/map-generator@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@unknown222/map-generator/-/map-generator-0.0.5.tgz#9b7f0c227003a729efc311d9ecf7b1237a04629e"
+  integrity sha512-FUIPo+nmVB6KwbKFzl1iMR1yQ2dFEAAn2MVH2KeSSJ6QHtMJ+IC0jJdOaeWgznbfyS/ZfVRGTmyTR42sef4aZA==
+  dependencies:
+    lodash "^4.17.21"
+    web-worker "^1.2.0"
+
+"@unknown222/mithraeum-sdk@^0.0.10-alpha.268":
+  version "0.0.10-alpha.268"
+  resolved "https://registry.yarnpkg.com/@unknown222/mithraeum-sdk/-/mithraeum-sdk-0.0.10-alpha.268.tgz#7fdc9f03375343ddc5cf090e21cb8677a516c6b6"
+  integrity sha512-xzMnidmVxkKvWqjYxwIs6ogb9CzJo6v/3pdiyn0RGKXV+2c/8+z03VY7QE+UhxbiEWyB2au9F+3HRJYYyn4ZSw==
+  dependencies:
+    lodash "^4.17.21"
+    rxjs "^7.8.1"
 
 "@vanilla-extract/css@1.14.0":
   version "1.14.0"

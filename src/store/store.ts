@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { SettlementEntity } from "@mithraeum/mithraeum-sdk";
+import { SettlementEntity } from "@unknown222/mithraeum-sdk";
 import { environment } from "../environment/environment";
 
 interface SettlementsState {

@@ -14,7 +14,7 @@ import {
   GameEntities,
   MithraeumSdk,
   SettlementEntity,
-} from "@mithraeum/mithraeum-sdk";
+} from "@unknown222/mithraeum-sdk";
 import { combineLatest, map, of, switchMap } from "rxjs";
 import { useMithraeumSdk } from "../../hooks/useMithraeumSdk";
 import { useEthersSigner } from "../../hooks/useEthersSigner";
